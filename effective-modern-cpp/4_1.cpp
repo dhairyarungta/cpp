@@ -26,3 +26,12 @@ createInvestement(Ts&&... params){
 
     return pInv;
 }
+class Widget :public std::enable_shared_from_this<Widget>{
+public:
+    void someProcess();
+};
+std::vector<std::shared_ptr<Widget>>processedWidgets;
+
+void Widget::someProcess(){
+    processedWidgets.emplace_back(shared_from_this());
+}
