@@ -46,8 +46,13 @@ std::shared_ptr<Widget> fastLoadWidget(WidgetId id){
     return spw;
 }
 
-template <typename T, typename... &&Ts>
-std::unique_ptr<T>
-make_unique(Ts&& ... args){
+template <typename T, typename... Ts>
+std::unique_ptr<T> make_unique(Ts&&... args){
     return std::unique_ptr<T>(new T(std::forward<Ts>(args)...));
 }
+
+std::unique_ptr<Widget>upw1(std::make_unique<Widget>());
+std::unique_ptr<Widget>upw2(new Widget());
+
+auto spw4(std::make_shared<Widget>());//spw4 is shared_ptr<Widget> type
+std::shared_ptr<Widget>spw5(new Widget());
